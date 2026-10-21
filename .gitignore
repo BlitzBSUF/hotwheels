@@ -1,0 +1,15 @@
+# Python / Django
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+media/
+
+# Node
+node_modules/
+dist/
+
+# Secretos y variables
+.env
+*.env
