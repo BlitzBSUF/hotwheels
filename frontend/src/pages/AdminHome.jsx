@@ -7,6 +7,7 @@ import api from '../api/client';
 import { useAuth } from '../auth/AuthContext';
 import HotWheelForm from '../components/HotWheelForm';
 import MovimientoModal from '../components/MovimientoModal';
+import { nombreHW } from '../utils/nombre';
 
 const ESTADO_COLOR = { disponible: 'green', agotado: 'red', inactivo: 'default' };
 
@@ -85,7 +86,7 @@ const acciones = (r) => (
       title: 'Modelo',
       render: (_, r) => (
         <>
-          <b>{r.marca_nombre} {r.modelo_nombre}</b>
+          <b>{nombreHW(r)}</b>
           <div style={{ fontSize: 12, color: '#667' }}>
             {r.anio} · {r.serie_nombre} · #{r.numero}
           </div>
@@ -176,7 +177,7 @@ const acciones = (r) => (
                   <span style={{ fontSize: 40 }}>🚗</span>
                 )}
                 <div style={{ flex: 1 }}>
-                  <b>{r.marca_nombre} {r.modelo_nombre}</b>
+                  <b>{nombreHW(r)}</b>
                   <div style={{ fontSize: 12, color: '#667' }}>
                     {r.anio} · {r.serie_nombre} · #{r.numero}
                   </div>

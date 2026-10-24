@@ -1,5 +1,6 @@
 import { Modal, Descriptions, Image, Button } from 'antd';
 import { useCart } from '../cart/CartContext';
+import { nombreHW } from '../utils/nombre';
 
 export default function DetalleModal({ hw, onClose }) {
   const { agregar, items } = useCart();
@@ -29,14 +30,14 @@ export default function DetalleModal({ hw, onClose }) {
         <div className="hw-detail">
           <div className="hw-detail-img">
             {hw.imagen ? (
-              <Image src={hw.imagen} alt={`${hw.marca_nombre} ${hw.modelo_nombre}`} />
+              <Image src={hw.imagen} alt={nombreHW(hw)} />
             ) : (
               <div className="hw-noimg" style={{ padding: 40, textAlign: 'center' }}>Sin foto</div>
             )}
           </div>
 
           <div>
-            <h2 className="hw-detail-title">{hw.marca_nombre} {hw.modelo_nombre}</h2>
+            <h2 className="hw-detail-title">{nombreHW(hw)}</h2>
             <Descriptions column={1} size="small" colon={false} items={datos} />
             {hw.descripcion && <p style={{ marginTop: 10 }}>{hw.descripcion}</p>}
 

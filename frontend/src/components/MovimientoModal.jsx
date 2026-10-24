@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Select, InputNumber, Input, message } from 'antd';
 import api from '../api/client';
+import { nombreHW } from '../utils/nombre';
 
 const TIPOS = [
   { value: 'venta', label: 'Venta (resta)' },
@@ -34,7 +35,7 @@ export default function MovimientoModal({ open, record, onClose, onSaved }) {
 
   return (
     <Modal
-      title={record ? `Stock: ${record.marca_nombre} ${record.modelo_nombre}` : ''}
+      title={record ? `Stock: ${nombreHW(record)}` : ''}
       open={open}
       onCancel={onClose}
       onOk={() => form.submit()}

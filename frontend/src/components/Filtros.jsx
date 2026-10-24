@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Row, Col, Select, Input, Switch, Button } from 'antd';
 import api from '../api/client';
-
+import { nombreAuto } from '../utils/nombre';
 const selectProps = {
   allowClear: true,
   showSearch: true,
@@ -44,7 +44,7 @@ export default function Filtros({ value, onChange }) {
 
   const modelos = cat.modelos
     .filter((m) => !value.modelo__marca || m.marca === value.modelo__marca)
-    .map((m) => ({ value: m.id, label: `${marcaNombre[m.marca] ?? ''} ${m.nombre}` }));
+    .map((m) => ({ value: m.id, label: nombreAuto(marcaNombre[m.marca] ?? '', m.nombre) }));
 
   const simple = (arr) => arr.map((x) => ({ value: x.id, label: x.nombre }));
 

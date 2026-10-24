@@ -27,7 +27,7 @@ export function CartProvider({ children }) {
         ...prev,
         {
           id: hw.id,
-          nombre: `${hw.marca_nombre} ${hw.modelo_nombre}`,
+          nombre: nombreHW(hw),
           detalle: `${hw.anio} · ${hw.serie_nombre} · #${hw.numero} · ${hw.color_nombre}`,
           imagen: hw.imagen,
           precio: Number(hw.precio_venta),

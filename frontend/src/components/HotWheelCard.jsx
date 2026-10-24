@@ -1,8 +1,10 @@
 import { Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { useCart } from '../cart/CartContext';
+import { nombreHW } from '../utils/nombre';
 
 export default function HotWheelCard({ hw, onOpen }) {
+  const nombre = nombreHW(hw);
   const { agregar, items } = useCart();
   const enCarrito = items.find((i) => i.id === hw.id)?.cantidad || 0;
   const agotado = hw.cantidad === 0;
@@ -27,11 +29,11 @@ export default function HotWheelCard({ hw, onOpen }) {
         type="button"
         className="hw-card-visual"
         onClick={() => onOpen(hw)}
-        aria-label={`Ver detalle de ${hw.marca_nombre} ${hw.modelo_nombre}`}
+        aria-label={`Ver detalle de ${nombre}`}
       >
         <span className="hw-bubble">
           {hw.imagen ? (
-            <img src={hw.imagen} alt={`${hw.marca_nombre} ${hw.modelo_nombre}`} loading="lazy" />
+            <img src={hw.imagen} alt={nombre} loading="lazy" />
           ) : (
             <span className="hw-noimg">Sin foto</span>
           )}
@@ -40,7 +42,7 @@ export default function HotWheelCard({ hw, onOpen }) {
       </button>
 
       <div className="hw-card-body">
-        <h3>{hw.marca_nombre} {hw.modelo_nombre}</h3>
+        <h3>{nombre}</h3>
         <div>
           <span className="hw-chip">{hw.color_nombre}</span>
           <span className="hw-chip">{hw.tipo_nombre}</span>
