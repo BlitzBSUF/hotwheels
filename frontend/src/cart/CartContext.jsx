@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { nombreHW } from '../utils/nombre';
 
 const CartContext = createContext(null);
 const KEY = 'carrito';

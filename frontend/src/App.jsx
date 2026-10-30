@@ -9,10 +9,10 @@ import Catalogo from './pages/Catalogo';
 import Login from './pages/Login';
 import AdminHome from './pages/AdminHome';
 import ProtectedRoute from './auth/ProtectedRoute';
-
+import useBackModal from './hooks/useBackModal';
 export default function App() {
   const { count } = useCart();
-  const [cartOpen, setCartOpen] = useState(false);
+  const [cartOpen, abrirCarrito, cerrarCarrito] = useBackModal(false);
   const { pathname } = useLocation();
   const esCatalogo = pathname === '/';
   const esAdmin = pathname.startsWith('/admin');
@@ -29,7 +29,7 @@ export default function App() {
                 size="large"
                 icon={<ShoppingCartOutlined />}
                 aria-label="Abrir carrito"
-                onClick={() => setCartOpen(true)}
+                onClick={() => abrirCarrito(true)}
               />
             </Badge>
           )}
@@ -53,7 +53,7 @@ export default function App() {
         </Routes>
       </main>
 
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartDrawer open={cartOpen} onClose={cerrarCarrito} />
     </div>
   );
 }

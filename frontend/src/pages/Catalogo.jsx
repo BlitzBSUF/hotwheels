@@ -4,6 +4,7 @@ import api from '../api/client';
 import Filtros from '../components/Filtros';
 import HotWheelCard from '../components/HotWheelCard';
 import DetalleModal from '../components/DetalleModal';
+import useBackModal from '../hooks/useBackModal';
 
 const PAGE_SIZE = 12;
 
@@ -13,8 +14,7 @@ export default function Catalogo() {
   const [page, setPage] = useState(1);
   const [filtros, setFiltros] = useState({});
   const [loading, setLoading] = useState(true);
-  const [detalle, setDetalle] = useState(null);
-
+  const [detalle, abrirDetalle, cerrarDetalle] = useBackModal(null);
   const cambiarFiltros = (f) => {
     setFiltros(f);
     setPage(1);
@@ -49,7 +49,7 @@ export default function Catalogo() {
           <Row gutter={[14, 14]}>
             {items.map((hw) => (
               <Col key={hw.id} xs={12} md={8} lg={6}>
-                <HotWheelCard hw={hw} onOpen={setDetalle} />
+                <HotWheelCard hw={hw} onOpen={abrirDetalle} />
               </Col>
             ))}
           </Row>
@@ -66,7 +66,7 @@ export default function Catalogo() {
         </div>
       </Spin>
 
-      <DetalleModal hw={detalle} onClose={() => setDetalle(null)} />
+      <DetalleModal hw={detalle} onClose={cerrarDetalle} />
     </>
   );
 }
